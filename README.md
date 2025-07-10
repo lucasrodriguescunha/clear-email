@@ -22,7 +22,6 @@ Este projeto é um script Python para apagar todos os e-mails de uma conta IMAP 
    ```env
    EMAIL=seu_email@exemplo.com
    PASSWORD=sua_senha_ou_senha_de_app
-   IMAP_SERVER=imap.seuprovedor.com
    ```
    - Para Gmail, use uma senha de app (veja [documentação do Google](https://support.google.com/accounts/answer/185833)).
    - Exemplos de servidores IMAP:
