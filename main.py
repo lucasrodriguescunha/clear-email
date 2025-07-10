@@ -3,7 +3,6 @@ import os
 
 from dotenv import load_dotenv
 
-
 def main():
     # Carregar variáveis do .env
     load_dotenv()
