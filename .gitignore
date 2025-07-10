@@ -4,3 +4,5 @@
 # Arquivo de variáveis de ambiente
 .env
 
+# Configurações do IDE
+.idea/
