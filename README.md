@@ -9,7 +9,7 @@ Este projeto é um script Python para apagar todos os e-mails de uma conta IMAP 
 ## Instalação
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/seu-usuario/clear-email.git
+   git clone https://github.com/lucasrodriguescunha/clear-email.git
    cd clear-email
    ```
 2. Instale as dependências:
