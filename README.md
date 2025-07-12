@@ -1,6 +1,6 @@
 # Clear Email
 
-Este projeto é um script Python para apagar todos os e-mails de uma conta IMAP (Gmail, Outlook, Yahoo, etc.) de forma automatizada e segura. Suporta qualquer provedor IMAP, bastando informar o servidor correto no arquivo `.env`.
+Este projeto é um script Python para apagar todos os e-mails de uma conta IMAP (Gmail, Outlook, Yahoo, etc.) de forma automatizada e segura.
 
 ## Requisitos
 - Python 3.7+
