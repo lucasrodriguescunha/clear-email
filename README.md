@@ -30,7 +30,6 @@ Crie um arquivo `.env` na raiz do projeto:
 ```env
 EMAIL=seu-email@gmail.com
 PASSWORD=sua-senha-de-app
-IMAP_SERVER=imap.gmail.com
 ```
 
 ## 🔧 Configuração
@@ -41,7 +40,6 @@ IMAP_SERVER=imap.gmail.com
 3. Use a senha de app no arquivo `.env`
 
 ### Outros provedores de email
-Configure o `IMAP_SERVER` no arquivo `.env`:
 
 | Provedor | Servidor IMAP | Porta |
 |----------|---------------|-------|
@@ -187,20 +185,19 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ## 🆘 Suporte
 
 Se você encontrar problemas ou tiver dúvidas:
-1. Verifique a seção [Solução de Problemas](#-solução-de-problemas)
-2. Abra uma [issue](https://github.com/seu-usuario/clear-email/issues)
-3. Descreva detalhadamente o problema encontrado
+1. Abra uma [issue](https://github.com/lucasrodriguescunha/clear-email/issues)
+2. Descreva detalhadamente o problema encontrado
 
 ## 🔄 Changelog
 
-### v2.0.0
+### v.0.0.2
 - ✅ Estrutura modular implementada
 - ✅ Interface interativa aprimorada
 - ✅ Exclusão por ano específico
 - ✅ Melhor tratamento de erros
 - ✅ Documentação completa
 
-### v1.0.0
+### v.0.0.1
 - ✅ Versão inicial
 - ✅ Exclusão básica de e-mails
 - ✅ Suporte a Gmail
