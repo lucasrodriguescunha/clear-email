@@ -16,7 +16,7 @@ Um aplicativo Python para limpeza automática de e-mails via IMAP com interface 
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/clear-email.git
+git clone https://github.com/lucasrodriguescunha/clear-email.git
 cd clear-email
 ```
 
