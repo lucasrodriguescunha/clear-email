@@ -6,6 +6,9 @@ Um aplicativo Python para limpeza automática de e-mails via IMAP com interface 
 
 - ✅ **Exclusão por data específica** - Remove e-mails de uma data determinada (ex: 25/12/2023)
 - ✅ **Exclusão por período** - Remove e-mails entre duas datas específicas
+- ✅ **Exclusão por antiguidade** - Remove e-mails anteriores a uma data específica
+- ✅ **Exclusão por novidade** - Remove e-mails posteriores a uma data específica
+- ✅ **Exclusão por mês/ano** - Remove e-mails de um mês específico em um ano
 - ✅ **Exclusão por ano específico** - Remove e-mails de um ano determinado
 - ✅ **Exclusão completa** - Remove todos os e-mails da caixa de entrada
 - ✅ **Interface de usuário** - Menu amigável com opções 
@@ -62,8 +65,11 @@ python main.py
 O que você deseja fazer?
 [1] - Apagar e-mails de uma data específica
 [2] - Apagar e-mails entre duas datas
-[3] - Apagar e-mails de um ano específico
-[4] - Apagar todos os e-mails
+[3] - Apagar e-mails anteriores a uma data
+[4] - Apagar e-mails posteriores a uma data
+[5] - Apagar e-mails de um mês/ano específico
+[6] - Apagar e-mails de um ano específico
+[7] - Apagar todos os e-mails
 [0] - Sair
 ```
 
@@ -72,9 +78,12 @@ O que você deseja fazer?
 2. Escolha a opção desejada
 3. Para opção 1: Digite a data no formato DD/MM/AAAA (ex: 25/12/2023)
 4. Para opção 2: Digite a data inicial e final no formato DD/MM/AAAA
-5. Para opção 3: Digite o ano (ex: 2020)
-6. Para opção 4: Digite "SIM" para confirmar
-7. Acompanhe o progresso da exclusão
+5. Para opção 3: Digite a data limite no formato DD/MM/AAAA (serão excluídos e-mails anteriores)
+6. Para opção 4: Digite a data limite no formato DD/MM/AAAA (serão excluídos e-mails posteriores)
+7. Para opção 5: Digite o mês (1-12) e o ano
+8. Para opção 6: Digite o ano (ex: 2020)
+9. Para opção 7: Digite "SIM" para confirmar
+10. Acompanhe o progresso da exclusão
 
 ## 🏗️ Estrutura do Projeto
 
@@ -110,6 +119,9 @@ Funções para conexão IMAP:
 Funções para manipulação de e-mails:
 - `delete_emails_by_date()` - Remove e-mails de uma data específica
 - `delete_emails_between_dates()` - Remove e-mails entre duas datas
+- `delete_emails_older_than()` - Remove e-mails anteriores a uma data específica
+- `delete_emails_newer_than()` - Remove e-mails posteriores a uma data específica
+- `delete_emails_by_month_year()` - Remove e-mails de um mês específico em um ano
 - `delete_emails_by_year()` - Remove e-mails de um ano específico
 - `delete_all_emails()` - Remove todos os e-mails
 - `fetch_emails()` - Busca e-mails
@@ -162,8 +174,11 @@ Login realizado com sucesso!
 O que você deseja fazer?
 [1] - Apagar e-mails de uma data específica
 [2] - Apagar e-mails entre duas datas
-[3] - Apagar e-mails de um ano específico
-[4] - Apagar todos os e-mails
+[3] - Apagar e-mails anteriores a uma data
+[4] - Apagar e-mails posteriores a uma data
+[5] - Apagar e-mails de um mês/ano específico
+[6] - Apagar e-mails de um ano específico
+[7] - Apagar todos os e-mails
 [0] - Sair
 Digite sua escolha (0, 1, 2, 3 ou 4): 1
 

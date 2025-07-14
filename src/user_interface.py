@@ -8,23 +8,26 @@ def get_user_choice():
     Get user choice for email deletion option
 
     Returns:
-        str: User choice ('0', '1', '2', '3', or '4')
+        str: User choice ('0' to '7')
     """
     while True:
         try:
             print('\nO que você deseja fazer? ')
             print('[1] - Apagar e-mails de uma data específica')
             print('[2] - Apagar e-mails entre duas datas')
-            print('[3] - Apagar e-mails de um ano específico')
-            print('[4] - Apagar todos os e-mails')
+            print('[3] - Apagar e-mails anteriores a uma data')
+            print('[4] - Apagar e-mails posteriores a uma data')
+            print('[5] - Apagar e-mails de um mês/ano específico')
+            print('[6] - Apagar e-mails de um ano específico')
+            print('[7] - Apagar todos os e-mails')
             print('[0] - Sair')
 
-            choice = input('Digite sua escolha (0, 1, 2, 3 ou 4): ').strip()
+            choice = input('Digite sua escolha (0-7): ').strip()
 
-            if choice in ['0', '1', '2', '3', '4']:
+            if choice in ['0', '1', '2', '3', '4', '5', '6', '7']:
                 return choice
             else:
-                print('Opção inválida! Por favor, digite 0, 1, 2, 3 ou 4.')
+                print('Opção inválida! Por favor, digite um número entre 0 e 7.')
         except KeyboardInterrupt:
             print('\nOperação cancelada pelo usuário.')
             return '0'
@@ -98,6 +101,36 @@ def get_date_range_from_user():
         return None, None
 
     return start_date, end_date
+
+
+def get_month_year_from_user():
+    """
+    Get month and year from user for email deletion
+
+    Returns:
+        tuple: (month, year) or (None, None) if cancelled
+    """
+    while True:
+        try:
+            month_input = input('Digite o mês (1-12): ').strip()
+            month = int(month_input)
+            if not 1 <= month <= 12:
+                print('Mês inválido! Digite um número entre 1 e 12.')
+                continue
+
+            year = get_year_from_user()
+            if year is None:
+                return None, None
+
+            return month, year
+        except ValueError:
+            print('Por favor, digite um mês válido (apenas números).')
+        except KeyboardInterrupt:
+            print('\nOperação cancelada pelo usuário.')
+            return None, None
+        except Exception as e:
+            print(f'Erro ao ler mês/ano: {e}')
+            return None, None
 
 
 def display_welcome_message():
