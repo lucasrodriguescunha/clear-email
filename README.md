@@ -6,11 +6,11 @@ Um aplicativo Python para limpeza automática de e-mails via IMAP com interface 
 
 - ✅ **Exclusão por ano específico** - Remove e-mails de um ano determinado
 - ✅ **Exclusão completa** - Remove todos os e-mails da caixa de entrada
-- ✅ **Interface interativa** - Menu amigável com opções claras
+- ✅ **Interface de usuário** - Menu amigável com opções 
 - ✅ **Suporte a múltiplos provedores** - Gmail, Outlook, Yahoo e outros
 - ✅ **Progresso em tempo real** - Acompanhe o processo de exclusão
 - ✅ **Confirmação de segurança** - Evita exclusões acidentais
-- ✅ **Estrutura modular** - Código organizado e profissional
+- ✅ **Estrutura modular** - Código modular e organizado
 
 ## 🚀 Instalação
 
@@ -147,9 +147,6 @@ Interface do usuário:
 ## 📝 Exemplo de Saída
 
 ```
-==================================================
-     LIMPADOR DE E-MAILS
-==================================================
 Conectando ao servidor IMAP: imap.gmail.com
 Login realizado com sucesso!
 
@@ -165,8 +162,6 @@ Digite o ano (ex: 2020): 2020
 ...
 1250 de 1250 e-mails marcados para exclusão...
 Todos os e-mails foram apagados com sucesso!
-Total de 1250 e-mails do ano 2020 foram excluídos.
-Restam 15480 e-mails na caixa de entrada.
 Logout realizado com sucesso.
 ```
 
@@ -187,20 +182,6 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 Se você encontrar problemas ou tiver dúvidas:
 1. Abra uma [issue](https://github.com/lucasrodriguescunha/clear-email/issues)
 2. Descreva detalhadamente o problema encontrado
-
-## 🔄 Changelog
-
-### v.0.0.2
-- ✅ Estrutura modular implementada
-- ✅ Interface interativa aprimorada
-- ✅ Exclusão por ano específico
-- ✅ Melhor tratamento de erros
-- ✅ Documentação completa
-
-### v.0.0.1
-- ✅ Versão inicial
-- ✅ Exclusão básica de e-mails
-- ✅ Suporte a Gmail
 
 ---
 
