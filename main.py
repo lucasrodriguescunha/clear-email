@@ -2,11 +2,12 @@
 Main module for email cleaner application
 """
 from src.config import Config
-from src.email_operations import delete_emails_by_year, delete_all_emails, show_remaining_emails
+from src.email_operations import delete_emails_by_year, delete_all_emails, show_remaining_emails, delete_emails_by_date
 from src.imap_connection import connect_imap, login_imap, logout_imap
 from src.user_interface import (
     get_user_choice,
     get_year_from_user,
+    get_date_from_user,
     display_welcome_message,
     display_connection_message,
     display_result_message,
@@ -42,6 +43,15 @@ def main():
             display_exit_message()
             return
         elif choice == '1':
+            date_str = get_date_from_user()
+            if date_str is None:
+                display_cancelled_message()
+                return
+
+            deleted_ids = delete_emails_by_date(mail, date_str)
+            if deleted_ids:
+                display_result_message(len(deleted_ids))
+        elif choice == '2':
             year = get_year_from_user()
             if year is None:
                 display_cancelled_message()
@@ -50,7 +60,7 @@ def main():
             deleted_ids = delete_emails_by_year(mail, year)
             if deleted_ids:
                 display_result_message(len(deleted_ids), year)
-        elif choice == '2':
+        elif choice == '3':
             deleted_ids = delete_all_emails(mail)
             if deleted_ids:
                 display_result_message(len(deleted_ids))

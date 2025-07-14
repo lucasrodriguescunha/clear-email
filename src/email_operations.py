@@ -1,18 +1,4 @@
-"""
-Email operations module for email cleaner application
-"""
-
-
 def fetch_emails(mail):
-    """
-    Fetch all emails from inbox
-
-    Args:
-        mail: IMAP connection object
-
-    Returns:
-        list: List of email IDs
-    """
     mail.select('inbox')
     status, messages = mail.search(None, 'ALL')
     if status != 'OK':
@@ -22,16 +8,6 @@ def fetch_emails(mail):
 
 
 def fetch_emails_by_year(mail, year):
-    """
-    Fetch emails from a specific year
-
-    Args:
-        mail: IMAP connection object
-        year (int): Year to search emails
-
-    Returns:
-        list: List of email IDs from the specified year
-    """
     try:
         mail.select('inbox')
         search_criteria = f'(SINCE "01-Jan-{year}" BEFORE "01-Jan-{year+1}")'
@@ -53,13 +29,6 @@ def fetch_emails_by_year(mail, year):
 
 
 def mark_for_deletion(mail, email_ids):
-    """
-    Mark emails for deletion
-
-    Args:
-        mail: IMAP connection object
-        email_ids (list): List of email IDs to mark for deletion
-    """
     for idx, email_id in enumerate(email_ids, 1):
         try:
             mail.store(email_id, '+FLAGS', '\\Deleted')
@@ -70,12 +39,6 @@ def mark_for_deletion(mail, email_ids):
 
 
 def expunge_emails(mail):
-    """
-    Permanently delete marked emails
-
-    Args:
-        mail: IMAP connection object
-    """
     try:
         mail.expunge()
         print('Todos os e-mails foram apagados com sucesso!')
@@ -84,16 +47,6 @@ def expunge_emails(mail):
 
 
 def delete_emails_by_year(mail, year):
-    """
-    Delete all emails from a specific year
-
-    Args:
-        mail: IMAP connection object
-        year (int): Year to delete emails from
-
-    Returns:
-        list: List of deleted email IDs
-    """
     try:
         email_ids = fetch_emails_by_year(mail, year)
         if not email_ids:
@@ -109,15 +62,6 @@ def delete_emails_by_year(mail, year):
 
 
 def delete_all_emails(mail):
-    """
-    Delete all emails in the inbox
-
-    Args:
-        mail: IMAP connection object
-
-    Returns:
-        list: List of deleted email IDs
-    """
     try:
         email_ids = fetch_emails(mail)
         if not email_ids:
@@ -141,14 +85,54 @@ def delete_all_emails(mail):
 
 
 def show_remaining_emails(mail):
-    """
-    Show count of remaining emails
-
-    Args:
-        mail: IMAP connection object
-    """
     try:
         remaining_ids = fetch_emails(mail)
         print(f'Restam {len(remaining_ids)} e-mails na caixa de entrada.')
     except Exception as e:
         print(f'Erro ao buscar a quantidade de e-mails restantes: {e}')
+
+
+def fetch_emails_by_date(mail, date_str):
+    try:
+        mail.select('inbox')
+        # Converte a string de data para o formato correto
+        from datetime import datetime
+        date_obj = datetime.strptime(date_str, '%d/%m/%Y')
+        search_date = date_obj.strftime('%d-%b-%Y')
+
+        # Busca e-mails da data específica
+        search_criteria = f'(ON "{search_date}")'
+        status, messages = mail.search(None, search_criteria)
+
+        if status != 'OK':
+            print(f"Erro ao buscar e-mails da data {date_str}: {status}")
+            return []
+
+        email_ids = messages[0].split()
+        if not email_ids:
+            print(f'Nenhum e-mail encontrado para a data {date_str}.')
+            return []
+
+        print(f'Encontrados {len(email_ids)} e-mails para a data {date_str}.')
+        return email_ids
+    except ValueError:
+        print('Formato de data inválido. Use o formato DD/MM/AAAA')
+        return []
+    except Exception as e:
+        print(f'Erro ao buscar e-mails da data {date_str}: {e}')
+        return []
+
+
+def delete_emails_by_date(mail, date_str):
+    try:
+        email_ids = fetch_emails_by_date(mail, date_str)
+        if not email_ids:
+            return []
+
+        mark_for_deletion(mail, email_ids)
+        expunge_emails(mail)
+        print(f'Todos os e-mails da data {date_str} foram apagados com sucesso!')
+        return email_ids
+    except Exception as e:
+        print(f'Erro ao excluir e-mails da data {date_str}: {e}')
+        return []
