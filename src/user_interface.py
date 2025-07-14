@@ -8,22 +8,23 @@ def get_user_choice():
     Get user choice for email deletion option
 
     Returns:
-        str: User choice ('0', '1', '2', or '3')
+        str: User choice ('0', '1', '2', '3', or '4')
     """
     while True:
         try:
             print('\nO que você deseja fazer? ')
             print('[1] - Apagar e-mails de uma data específica')
-            print('[2] - Apagar e-mails de um ano específico')
-            print('[3] - Apagar todos os e-mails')
+            print('[2] - Apagar e-mails entre duas datas')
+            print('[3] - Apagar e-mails de um ano específico')
+            print('[4] - Apagar todos os e-mails')
             print('[0] - Sair')
 
-            choice = input('Digite sua escolha (0, 1, 2 ou 3): ').strip()
+            choice = input('Digite sua escolha (0, 1, 2, 3 ou 4): ').strip()
 
-            if choice in ['0', '1', '2', '3']:
+            if choice in ['0', '1', '2', '3', '4']:
                 return choice
             else:
-                print('Opção inválida! Por favor, digite 0, 1, 2 ou 3.')
+                print('Opção inválida! Por favor, digite 0, 1, 2, 3 ou 4.')
         except KeyboardInterrupt:
             print('\nOperação cancelada pelo usuário.')
             return '0'
@@ -77,6 +78,26 @@ def get_date_from_user():
             return None
         except Exception as e:
             print(f'Erro ao ler data: {e}')
+
+
+def get_date_range_from_user():
+    """
+    Get start and end dates from user for email deletion
+
+    Returns:
+        tuple: (start_date, end_date) in DD/MM/YYYY format or (None, None) if cancelled
+    """
+    print('\nPara excluir e-mails entre duas datas:')
+    start_date = get_date_from_user()
+    if start_date is None:
+        return None, None
+
+    print('\nAgora, informe a data final:')
+    end_date = get_date_from_user()
+    if end_date is None:
+        return None, None
+
+    return start_date, end_date
 
 
 def display_welcome_message():

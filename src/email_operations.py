@@ -136,3 +136,57 @@ def delete_emails_by_date(mail, date_str):
     except Exception as e:
         print(f'Erro ao excluir e-mails da data {date_str}: {e}')
         return []
+
+
+def fetch_emails_between_dates(mail, start_date_str, end_date_str):
+    try:
+        mail.select('inbox')
+        # Converte as strings de data para o formato correto
+        from datetime import datetime
+        start_date_obj = datetime.strptime(start_date_str, '%d/%m/%Y')
+        end_date_obj = datetime.strptime(end_date_str, '%d/%m/%Y')
+
+        # Verifica se a data inicial é anterior à data final
+        if start_date_obj > end_date_obj:
+            print('A data inicial deve ser anterior à data final')
+            return []
+
+        start_date = start_date_obj.strftime('%d-%b-%Y')
+        end_date = end_date_obj.strftime('%d-%b-%Y')
+
+        # Busca e-mails entre as datas específicas
+        search_criteria = f'(SINCE "{start_date}" BEFORE "{end_date}")'
+        status, messages = mail.search(None, search_criteria)
+
+        if status != 'OK':
+            print(f"Erro ao buscar e-mails entre {start_date_str} e {end_date_str}: {status}")
+            return []
+
+        email_ids = messages[0].split()
+        if not email_ids:
+            print(f'Nenhum e-mail encontrado entre {start_date_str} e {end_date_str}.')
+            return []
+
+        print(f'Encontrados {len(email_ids)} e-mails entre {start_date_str} e {end_date_str}.')
+        return email_ids
+    except ValueError:
+        print('Formato de data inválido. Use o formato DD/MM/AAAA')
+        return []
+    except Exception as e:
+        print(f'Erro ao buscar e-mails entre as datas: {e}')
+        return []
+
+
+def delete_emails_between_dates(mail, start_date_str, end_date_str):
+    try:
+        email_ids = fetch_emails_between_dates(mail, start_date_str, end_date_str)
+        if not email_ids:
+            return []
+
+        mark_for_deletion(mail, email_ids)
+        expunge_emails(mail)
+        print(f'Todos os e-mails entre {start_date_str} e {end_date_str} foram apagados com sucesso!')
+        return email_ids
+    except Exception as e:
+        print(f'Erro ao excluir e-mails entre as datas: {e}')
+        return []
