@@ -89,7 +89,7 @@ O que você deseja fazer?
 
 ```
 clear-email/
-├── main.py                 # Arquivo principal
+├── main.py                 # Arquivo principal com estrutura modular
 ├── requirements.txt        # Dependências
 ├── .env                   # Variáveis de ambiente (não versionado)
 ├── README.md              # Este arquivo
@@ -102,6 +102,17 @@ clear-email/
 ```
 
 ## 🔧 Módulos
+
+### `main.py`
+Arquivo principal com estrutura modular:
+- `initialize_connection()` - Gerencia a conexão IMAP
+- `handle_single_date_operation()` - Processa operações com uma única data
+- `handle_date_range_operation()` - Processa operações com intervalo de datas
+- `handle_month_year_operation()` - Processa operações com mês/ano
+- `handle_all_emails_operation()` - Gerencia exclusão total
+- `process_user_choice()` - Gerencia as escolhas do usuário
+- Tratamento de erros e exceções
+- Sistema de logout seguro
 
 ### `config.py`
 Gerencia configurações e variáveis de ambiente:
@@ -117,16 +128,12 @@ Funções para conexão IMAP:
 
 ### `email_operations.py`
 Funções para manipulação de e-mails:
-- `delete_emails_by_date()` - Remove e-mails de uma data específica
-- `delete_emails_between_dates()` - Remove e-mails entre duas datas
-- `delete_emails_older_than()` - Remove e-mails anteriores a uma data específica
-- `delete_emails_newer_than()` - Remove e-mails posteriores a uma data específica
-- `delete_emails_by_month_year()` - Remove e-mails de um mês específico em um ano
-- `delete_emails_by_year()` - Remove e-mails de um ano específico
-- `delete_all_emails()` - Remove todos os e-mails
-- `fetch_emails()` - Busca e-mails
-- `mark_for_deletion()` - Marca e-mails para exclusão
-- `expunge_emails()` - Confirma exclusão dos e-mails marcados
+- `fetch_emails_by_criteria()` - Sistema unificado de busca por critérios
+- `convert_date()` - Conversão padronizada de datas
+- `fetch_and_process_emails()` - Processamento unificado de e-mails
+- Funções específicas para cada tipo de operação
+- Sistema robusto de tratamento de erros
+- Constantes para mensagens e formatos
 
 ### `user_interface.py`
 Interface do usuário:
@@ -147,6 +154,17 @@ Interface do usuário:
 - Use senhas de app específicas
 - Mantenha suas credenciais seguras
 - O arquivo `.env` está no `.gitignore`
+
+## 🎯 Melhorias Recentes
+
+- ✨ Estrutura mais modular e organizada
+- 🛡️ Tratamento robusto de erros
+- 🔄 Sistema unificado de processamento
+- 📅 Manipulação padronizada de datas
+- 🎮 Interface de usuário mais intuitiva
+- 🚀 Código mais eficiente e manutenível
+- 🔍 Melhor rastreamento de operações
+- 🛑 Sistema seguro de logout
 
 ## 🐛 Solução de Problemas
 
