@@ -34,7 +34,9 @@ def fetch_emails_by_year(mail, year):
     """
     try:
         mail.select('inbox')
-        status, messages = mail.search(None, f'(SINCE {year}-01-01 BEFORE {year + 1}-01-01)')
+        search_criteria = f'(SINCE "01-Jan-{year}" BEFORE "01-Jan-{year+1}")'
+        status, messages = mail.search(None, search_criteria)
+
         if status != 'OK':
             print(f"Erro ao buscar e-mails do ano {year}: {status}")
             return []
