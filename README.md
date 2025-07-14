@@ -4,6 +4,8 @@ Um aplicativo Python para limpeza automática de e-mails via IMAP com interface 
 
 ## 🌟 Funcionalidades
 
+- ✅ **Exclusão por data específica** - Remove e-mails de uma data determinada (ex: 25/12/2023)
+- ✅ **Exclusão por período** - Remove e-mails entre duas datas específicas
 - ✅ **Exclusão por ano específico** - Remove e-mails de um ano determinado
 - ✅ **Exclusão completa** - Remove todos os e-mails da caixa de entrada
 - ✅ **Interface de usuário** - Menu amigável com opções 
@@ -41,12 +43,12 @@ PASSWORD=sua-senha-de-app
 
 ### Outros provedores de email
 
-| Provedor | Servidor IMAP | Porta |
-|----------|---------------|-------|
-| Gmail | imap.gmail.com | 993 |
-| Outlook/Hotmail | outlook.office365.com | 993 |
-| Yahoo | imap.mail.yahoo.com | 993 |
-| AOL | imap.aol.com | 993 |
+| Provedor        | Servidor IMAP         | 
+|-----------------|-----------------------|
+| Gmail           | imap.gmail.com        |
+| Outlook/Hotmail | outlook.office365.com |
+| Yahoo           | imap.mail.yahoo.com   |
+| AOL             | imap.aol.com          |
 
 ## 📖 Como usar
 
@@ -58,17 +60,21 @@ python main.py
 ### Menu interativo
 ```
 O que você deseja fazer?
-[1] - Apagar e-mails de um ano específico
-[2] - Apagar todos os e-mails
+[1] - Apagar e-mails de uma data específica
+[2] - Apagar e-mails entre duas datas
+[3] - Apagar e-mails de um ano específico
+[4] - Apagar todos os e-mails
 [0] - Sair
 ```
 
 ### Exemplo de uso
 1. Execute o programa
 2. Escolha a opção desejada
-3. Para opção 1: Digite o ano (ex: 2020)
-4. Para opção 2: Digite "SIM" para confirmar
-5. Acompanhe o progresso da exclusão
+3. Para opção 1: Digite a data no formato DD/MM/AAAA (ex: 25/12/2023)
+4. Para opção 2: Digite a data inicial e final no formato DD/MM/AAAA
+5. Para opção 3: Digite o ano (ex: 2020)
+6. Para opção 4: Digite "SIM" para confirmar
+7. Acompanhe o progresso da exclusão
 
 ## 🏗️ Estrutura do Projeto
 
@@ -101,11 +107,14 @@ Funções para conexão IMAP:
 - `logout_imap()` - Desconecta do servidor
 
 ### `email_operations.py`
-Operações com e-mails:
-- `fetch_emails()` - Busca todos os e-mails
-- `delete_emails_by_year()` - Exclui e-mails por ano
-- `delete_all_emails()` - Exclui todos os e-mails
-- `show_remaining_emails()` - Mostra e-mails restantes
+Funções para manipulação de e-mails:
+- `delete_emails_by_date()` - Remove e-mails de uma data específica
+- `delete_emails_between_dates()` - Remove e-mails entre duas datas
+- `delete_emails_by_year()` - Remove e-mails de um ano específico
+- `delete_all_emails()` - Remove todos os e-mails
+- `fetch_emails()` - Busca e-mails
+- `mark_for_deletion()` - Marca e-mails para exclusão
+- `expunge_emails()` - Confirma exclusão dos e-mails marcados
 
 ### `user_interface.py`
 Interface do usuário:
@@ -151,12 +160,14 @@ Conectando ao servidor IMAP: imap.gmail.com
 Login realizado com sucesso!
 
 O que você deseja fazer?
-[1] - Apagar e-mails de um ano específico
-[2] - Apagar todos os e-mails
+[1] - Apagar e-mails de uma data específica
+[2] - Apagar e-mails entre duas datas
+[3] - Apagar e-mails de um ano específico
+[4] - Apagar todos os e-mails
 [0] - Sair
-Digite sua escolha (0, 1 ou 2): 1
+Digite sua escolha (0, 1, 2, 3 ou 4): 1
 
-Digite o ano (ex: 2020): 2020
+Digite a data no formato DD/MM/AAAA (ex: 25/12/2023): 25/12/2023
 100 de 1250 e-mails marcados para exclusão...
 200 de 1250 e-mails marcados para exclusão...
 ...
