@@ -1,4 +1,4 @@
-# 📧 Clear Email
+# 📧 Cʟᴇᴀʀ Eᴍᴀɪʟ
 
 Um aplicativo Python para limpeza automática de e-mails via IMAP com interface interativa.
 
