@@ -240,3 +240,40 @@ def show_remaining_emails(mail):
         print(f'Restam {len(remaining_ids)} e-mails na caixa de entrada.')
     except Exception as e:
         print(f'Erro ao buscar a quantidade de e-mails restantes: {e}')
+
+def fetch_emails_by_subject_keywords(mail, keywords):
+    try:
+        mail.select('inbox')
+
+        # Criar critério de busca combinando todas as palavras-chave
+        search_criteria_parts = []
+        for keyword in keywords:
+            search_criteria_parts.append(f'SUBJECT "{keyword}"')
+
+        # Usar OR para buscar qualquer uma das palavras-chave
+        search_criteria = f'({" OR ".join(search_criteria_parts)})'
+
+        email_ids = fetch_and_process_emails(
+            mail,
+            search_criteria,
+            f"Erro ao buscar e-mails com palavras-chave: {', '.join(keywords)}"
+        )
+
+        if email_ids:
+            print(f'Encontrados {len(email_ids)} e-mails com as palavras-chave: {", ".join(keywords)}.')
+        else:
+            print(f'Nenhum e-mail encontrado com as palavras-chave: {", ".join(keywords)}.')
+
+        return email_ids
+    except Exception as e:
+        print(f'Erro ao buscar e-mails por palavras-chave: {e}')
+        return []
+
+def delete_emails_by_subject_keywords(mail, keywords):
+    email_ids = fetch_emails_by_subject_keywords(mail, keywords)
+    keywords_str = ", ".join(keywords)
+    return delete_emails_with_confirmation(
+        mail,
+        email_ids,
+        f'Todos os e-mails com as palavras-chave "{keywords_str}" foram apagados com sucesso!'
+    )
